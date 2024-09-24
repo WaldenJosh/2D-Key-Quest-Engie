@@ -1,5 +1,7 @@
 # game_engine.py
 
+from rendering import Renderer
+
 class GameEngine:
     def __init__(self):
         self.is_running = True
@@ -7,6 +9,8 @@ class GameEngine:
     def start(self):
         print("Starting the 2D Key Quest Engine...")
         # Initialize the game, load data, set up states
+        renderer = Renderer()
+        renderer.clear_screen()
     
     def update(self):
         print("Updating game state...")
