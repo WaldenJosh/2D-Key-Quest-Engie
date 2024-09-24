@@ -1,7 +1,7 @@
 # ncurses_renderer.py
 
 import curses
-from renderer import Renderer
+from rendering import Renderer
 
 class NcursesRenderer(Renderer):
     def draw_entity(self, entity):

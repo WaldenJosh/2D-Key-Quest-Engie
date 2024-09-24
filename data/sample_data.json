@@ -1,4 +1,14 @@
 {
+    "player": {
+        "id": 1,
+        "name": "Hero",
+        "stats": {
+            "hp": 100,
+            "attack": 10,
+            "defense": 5
+        },
+        "inventory": []
+    },
     "npcs": [
         {
             "id": 1,
@@ -14,14 +24,67 @@
                 "hp": 30,
                 "attack": 5,
                 "defense": 2
+            },
+            "drop": {
+                "type": "key",
+                "id": 1
+            },
+            "state": {
+                "current": "idle",
+                "possible_states": [
+                    "idle",
+                    "alerted",
+                    "patrolling"
+                ]
             }
+        }
+    ],
+    "keys": [
+        {
+            "id": 1,
+            "color": "red",
+            "unlocks_door": 1
+        }
+    ],
+    "items": [
+        {
+            "id": 1,
+            "name": "Health Potion",
+            "effect": {
+                "type": "heal",
+                "value": 20
+            }
+        }
+    ],
+    "doors": [
+        {
+            "id": 1,
+            "color": "red",
+            "locked": true
         }
     ],
     "levels": [
         {
             "id": 1,
             "layout": "basic",
-            "description": "This is a small village area with some goblins around."
+            "description": "This is a small village area with some goblins around.",
+            "entities": {
+                "npcs": [
+                    1
+                ],
+                "enemies": [
+                    1
+                ],
+                "doors": [
+                    1
+                ],
+                "keys": [
+                    1
+                ],
+                "items": [
+                    1
+                ]
+            }
         }
     ]
 }
