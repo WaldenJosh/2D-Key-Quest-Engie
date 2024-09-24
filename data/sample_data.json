@@ -1,0 +1,27 @@
+{
+    "npcs": [
+        {
+            "id": 1,
+            "name": "Villager",
+            "dialogue": "Welcome to our village!"
+        }
+    ],
+    "enemies": [
+        {
+            "id": 1,
+            "type": "Goblin",
+            "stats": {
+                "hp": 30,
+                "attack": 5,
+                "defense": 2
+            }
+        }
+    ],
+    "levels": [
+        {
+            "id": 1,
+            "layout": "basic",
+            "description": "This is a small village area with some goblins around."
+        }
+    ]
+}
