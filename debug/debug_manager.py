@@ -21,7 +21,7 @@ class DebugManager:
 
         # If the log level flag is set, write the message to the log file
         if self.level_flags.get(level, False):
-            self.write_to_file(log_entry)
+            self._write_to_file(log_entry)
 
     def _write_to_file(self, log_entry):
         # Write a log entry to the log file
