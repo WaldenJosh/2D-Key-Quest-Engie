@@ -9,3 +9,6 @@ if __name__ == "__main__":
     debugger.log("Starting the game engine...", LogLevel.INFO)
     engine = GameEngine()
     engine.start()
+    engine.render()
+
+    engine.shutdown()
