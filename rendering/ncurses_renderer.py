@@ -11,8 +11,10 @@ class NcursesRenderer:
         curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
         curses.cbreak()
         curses.noecho()
+        curses.curs_set(0) # Hide the cursor
         self.stdscr.keypad(True)
         self.stdscr.clear()
+        self.stdscr.nodelay(True) # Non-blocking input
         self.debugger = DebugManager()
         self.debugger.log("Initializing ncurses renderer...", LogLevel.INFO)
         self.height, self.width = self.stdscr.getmaxyx()

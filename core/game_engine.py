@@ -2,6 +2,7 @@
 
 from rendering import Renderer
 from debug import DebugManager, LogLevel
+import time
 
 status_dict = {
     "test": "testing"
@@ -11,12 +12,26 @@ class GameEngine:
     def __init__(self):
         self.is_running = True
         self.renderer = Renderer()
-    def start(self):
+        self.frame_rate = 60 # Frames per second
+        self.frame_duration = 1.0 / self.frame_rate # Duration of each frame in seconds
+    def start_up(self):
         # Initialize the game, load data, set up states
         self.renderer.clear_screen()
     
     def update(self):
+
+        frame_start = time.time()
+
         self.draw_status_bar()
+        self.update_status("test", "testing") # This is just for testing. Can be removed soon.
+        self.handle_input()
+
+        self.render()
+
+        elapsed_time = time.time() - frame_start
+
+        if elapsed_time < self.frame_duration:
+            time.sleep(self.frame_duration - elapsed_time)
 
     def update_status(self, key, value):
         if key in status_dict:
