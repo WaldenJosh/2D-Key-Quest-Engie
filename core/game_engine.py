@@ -1,12 +1,28 @@
-# game_engine.py
+'''
+game_engine.py
 
+This module contains the GameEngine class, which manages the main game loop, rendering, 
+and input handling for the 2D Key Quest Engine. It includes methods for starting up, 
+updating, rendering, and shutting down the game, as well as managing game status and 
+debugging.
+
+Classes:
+    GameEngine: Manages the main game loop, rendering, and input handling.
+
+Functions:
+    update_status(key, value): Updates the status dictionary with the given key-value pair.
+    draw_status_bar(): Draws the status bar on the screen.
+    render(): Renders the current game state.
+    handle_input(): Handles user input.
+    shutdown(): Shuts down the game engine and cleans up resources.
+'''
 import time
 from rendering import Renderer
 from debug import DebugManager, LogLevel
 
 
 status_dict = {
-    "test": "testing"
+    "test": "testing", "frame": 0
 }
 
 
@@ -37,6 +53,12 @@ class GameEngine:
         self.renderer.clear_screen()
 
     def update(self):
+        """
+        Updates the game state for the current frame.
+
+        This includes drawing the status bar, updating the status,
+        handling input, rendering the frame, and managing frame timing.
+        """
 
         frame_start = time.time()
 
@@ -51,6 +73,11 @@ class GameEngine:
 
         if elapsed_time < self.frame_duration:
             time.sleep(self.frame_duration - elapsed_time)
+
+        if status_dict["frame"] == 60:
+            status_dict["frame"] = 0
+        else:
+            status_dict["frame"] += 1
 
     def update_status(self, key, value):
         if key in status_dict:
