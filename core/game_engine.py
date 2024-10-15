@@ -80,6 +80,15 @@ class GameEngine:
             status_dict["frame"] += 1
 
     def update_status(self, key, value):
+        """
+        Updates the status dictionary with the given key-value pair.
+
+        Args:
+            key (str): The key to update in the status dictionary.
+            value (Any): The new value to associate with the key.
+
+        Logs an error if the key is not found in the status dictionary.
+        """
         if key in status_dict:
             status_dict[key] = value
         else:
@@ -87,11 +96,20 @@ class GameEngine:
                 f"Key {key} not found in status_dict", LogLevel.ERROR)
 
     def draw_status_bar(self):
+        """
+        Draws the status bar on the screen.
+
+        This method constructs a status text from the status_dict and uses the renderer
+        to draw the text at the specified coordinates (1, 1).
+        """
         status_text = " | ".join(
             [f"{key}: {value}" for key, value in status_dict.items()])
         self.renderer.draw_text(1, 1, status_text)
 
     def render(self):
+        """
+        Renders the current game state by drawing text, a border, and updating the screen.
+        """
         # Call the rendering system to draw the current game state
         self.renderer.draw_text(5, 5, "Hello, world!")
         self.renderer.draw_border()
@@ -99,11 +117,18 @@ class GameEngine:
 
     # @TODO: implement input handling. I don't have a real input system yet of any kind.
     def handle_input(self):
+        """
+        Handles user input to control the game.
+
+        Retrieves input from the renderer and stops the game if the 'q' key is pressed.
+        """
         key = self.renderer.get_input()
         if key == ord('q'):
             self.is_running = False
 
     def shutdown(self):
-        # Clean up resources, save data, etc.
+        """
+        Shuts down the game engine by cleaning up resources, saving data, and stopping the renderer.
+        """
         self.renderer.shutdown_renderer()
         self.is_running = False
