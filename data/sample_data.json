@@ -68,23 +68,46 @@
             "id": 1,
             "layout": "basic",
             "description": "This is a small village area with some goblins around.",
+            "geometry": [
+                ["#", "#", "#", "#", "#", "#", "#"],
+                ["#", ".", ".", ".", ".", ".", "#"],
+                ["#", ".", ".", ".", ".", ".", "#"],
+                ["#", ".", ".", ".", ".", ".", "#"],
+                ["#", "#", "#", "#", "#", "#", "#"]
+            ],
             "entities": {
                 "npcs": [
-                    1
+                    {
+                        "id": 1,
+                        "position": [2, 2]
+                    }
                 ],
                 "enemies": [
-                    1
+                    {
+                        "id": 1,
+                        "position": [3, 3]
+                    }
                 ],
                 "doors": [
-                    1
+                    {
+                        "id": 1,
+                        "position": [1, 5]
+                    }
                 ],
                 "keys": [
-                    1
+                    {
+                        "id": 1,
+                        "position": [4, 2]
+                    }
                 ],
                 "items": [
-                    1
+                    {
+                        "id": 1,
+                        "position": [2, 4]
+                    }
                 ]
             }
+        
         }
     ]
 }

@@ -114,7 +114,7 @@ class GameEngine:
         Renders the current game state by drawing text, a border, and updating the screen.
         """
         # Call the rendering system to draw the current game state
-        self.renderer.draw_text(5, 5, "Hello, world!")
+
         self.renderer.draw_border()
         self.renderer.update_screen()
 
