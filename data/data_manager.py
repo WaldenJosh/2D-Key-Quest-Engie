@@ -8,7 +8,7 @@ class DataManager:
         self.data = {}
     
     def load_data(self):
-        with open(self.data_file, 'r') as file:
+        with open(self.data_file, 'r', encoding='utf-8') as file:
             self.data = json.load(file)
         print(f"Loaded data from {self.data_file}")
     
@@ -17,3 +17,6 @@ class DataManager:
     
     def get_enemy_data(self):
         return self.data.get("enemies", [])
+
+    def get_level_data(self, level_id):
+        return self.data.get("levels", {}).get(level_id, {})

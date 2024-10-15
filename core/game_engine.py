@@ -19,6 +19,7 @@ Functions:
 import time
 from rendering import Renderer
 from debug import DebugManager, LogLevel
+from data import data_manager
 
 
 status_dict = {
@@ -44,6 +45,7 @@ class GameEngine:
         self.frame_rate = 60  # Frames per second
         self.frame_duration = 1.0 / self.frame_rate  # Duration of each frame in seconds
         self.debugger = DebugManager()
+        self.data_manager = data_manager.DataManager() # Initialize the data manager
 
     def start_up(self):
         """
@@ -51,6 +53,7 @@ class GameEngine:
         Clears the screen using the renderer.
         """
         self.renderer.clear_screen()
+        self.data_manager.load_data()
 
     def update(self):
         """
