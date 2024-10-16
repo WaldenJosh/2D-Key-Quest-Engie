@@ -20,6 +20,7 @@ import time
 from rendering import Renderer
 from debug import DebugManager, LogLevel
 from data import data_manager
+from core import state_manager
 
 
 status_dict = {
@@ -46,6 +47,7 @@ class GameEngine:
         self.frame_duration = 1.0 / self.frame_rate  # Duration of each frame in seconds
         self.debugger = DebugManager()
         self.data_manager = data_manager.DataManager() # Initialize the data manager
+        self.state_manager = state_manager.StateManager() # Initialize the state manager
 
     def start_up(self):
         """
@@ -114,7 +116,10 @@ class GameEngine:
         Renders the current game state by drawing text, a border, and updating the screen.
         """
         # Call the rendering system to draw the current game state
+        # Render the level geometry from the state manager self.state_manager.return_level()
 
+        
+        
         self.renderer.draw_border()
         self.renderer.update_screen()
 

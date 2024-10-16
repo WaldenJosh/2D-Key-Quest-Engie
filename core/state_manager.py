@@ -33,3 +33,7 @@ class StateManager:
     def update_level(self, level):
         # Update the current level
         self.state["current_level"] = level
+
+    def return_level(self):
+        # Return the current level
+        return self.state["current_level"]
