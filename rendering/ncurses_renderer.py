@@ -67,8 +67,16 @@ class NcursesRenderer:
         curses.endwin()
         self.debugger.log("Shutting down ncurses renderer...", LogLevel.INFO)
 
-    def get_screen_size(self): # Get the screen size
-        return self.stdscr.getmaxyx()
+    def get_screen_size(self):
+        """
+        Get the screen size (width, height).
+        
+        Returns:
+            tuple: (width, height) in the format (columns, rows).
+        """
+        height, width = self.stdscr.getmaxyx()  # curses returns (height, width)
+        return width, height  # Return it as (width, height)
+
     
     def handle_resize(self): # Handle screen resize
         self.height, self.width = self.stdscr.getmaxyx()

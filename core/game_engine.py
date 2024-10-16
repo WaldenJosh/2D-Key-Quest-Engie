@@ -59,7 +59,7 @@ class GameEngine:
         self.renderer.clear_screen()
         self.data_manager.load_data()
         self.state_manager.update_level(
-            self.data_manager.get_level_data(1)) # Load the first level
+            self.data_manager.get_level_data(1))  # Load the first level
 
     def update(self):
         """
@@ -70,7 +70,6 @@ class GameEngine:
         """
 
         frame_start = time.time()
-
 
         self.handle_input()
 
@@ -115,15 +114,37 @@ class GameEngine:
 
     def draw_level_geometry(self):
         """
-        Draws the level geometry on the screen.
+        Draws the level geometry on the screen, centered around the player's current position.
 
-        This method retrieves the current level geometry from the state manager
-        and uses the renderer to draw the level geometry on the screen.
+        This method retrieves the current level geometry and current position from the state manager.
+        The level is drawn such that the current position is centered in the screen.
         """
+        # Get the current level data and current position
         level = self.state_manager.return_level()
+        current_position = level.get(
+            "current_position", [0, 0])  # Get current position
+
+        # Get screen dimensions (width and height)
+        screen_width, screen_height = self.renderer.get_screen_size()
+
+        # Calculate the center of the screen
+        center_x = screen_width // 2
+        center_y = screen_height // 2
+
+        # Calculate the top-left corner of where to start drawing the level
+        offset_x = center_x - current_position[0]
+        offset_y = center_y - current_position[1]
+
+        # Draw the level geometry with the adjusted coordinates
         for row, line in enumerate(level["geometry"]):
             for col, char in enumerate(line):
-                self.renderer.draw_entity(col, row, char)
+                # Adjust the position of each tile based on the offsets
+                draw_x = col + offset_x
+                draw_y = row + offset_y
+
+                # Only draw tiles that are within the screen bounds
+                if 0 <= draw_x < screen_width and 0 <= draw_y < screen_height:
+                    self.renderer.draw_entity(draw_x, draw_y, char)
 
     def render(self):
         """
@@ -139,8 +160,8 @@ class GameEngine:
         self.draw_level_geometry()
         self.renderer.update_screen()
 
-
     # @TODO: implement input handling. I don't have a real input system yet of any kind.
+
     def handle_input(self):
         """
         Handles user input to control the game.
