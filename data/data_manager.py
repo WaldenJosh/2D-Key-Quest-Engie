@@ -10,7 +10,6 @@ class DataManager:
     def load_data(self):
         with open(self.data_file, 'r', encoding='utf-8') as file:
             self.data = json.load(file)
-        print(f"Loaded data from {self.data_file}")
     
     def get_npc_data(self):
         return self.data.get("npcs", [])

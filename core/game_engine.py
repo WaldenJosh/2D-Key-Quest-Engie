@@ -71,9 +71,7 @@ class GameEngine:
 
         frame_start = time.time()
 
-        self.draw_status_bar()
-        # This is just for testing. Can be removed soon.
-        self.update_status("test", "testing")
+
         self.handle_input()
 
         self.render()
@@ -115,6 +113,18 @@ class GameEngine:
             [f"{key}: {value}" for key, value in status_dict.items()])
         self.renderer.draw_text(1, 1, status_text)
 
+    def draw_level_geometry(self):
+        """
+        Draws the level geometry on the screen.
+
+        This method retrieves the current level geometry from the state manager
+        and uses the renderer to draw the level geometry on the screen.
+        """
+        level = self.state_manager.return_level()
+        for row, line in enumerate(level["geometry"]):
+            for col, char in enumerate(line):
+                self.renderer.draw_entity(col, row, char)
+
     def render(self):
         """
         Renders the current game state by drawing text, a border, and updating the screen.
@@ -122,8 +132,13 @@ class GameEngine:
         # Call the rendering system to draw the current game state
         # Render the level geometry from the state manager self.state_manager.return_level()
 
+        self.renderer.clear_screen()
         self.renderer.draw_border()
+
+        self.draw_status_bar()
+        self.draw_level_geometry()
         self.renderer.update_screen()
+
 
     # @TODO: implement input handling. I don't have a real input system yet of any kind.
     def handle_input(self):
