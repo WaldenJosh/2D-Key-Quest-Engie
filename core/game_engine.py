@@ -168,9 +168,29 @@ class GameEngine:
 
         Retrieves input from the input handler and stops the game if the 'q' key is pressed.
         """
+    
+        # Get input from the input handler
         key = self.input_handler.get_input()
-        if key == ord('q'):
+
+        # Get the current position of the player from the game state
+        current_level = self.state_manager.state["current_level"]
+        current_position = current_level["current_position"]
+
+        # Movement keys (WASD)
+        if key == ord('w'):  # Move up
+            current_position[1] += 1
+        elif key == ord('a'):  # Move left
+            current_position[0] += 1
+        elif key == ord('s'):  # Move down
+            current_position[1] -= 1
+        elif key == ord('d'):  # Move right
+            current_position[0] -= 1
+        elif key == ord('q'):  # Quit the game
             self.is_running = False
+            return
+
+        # Update the position in the game state
+        self.state_manager.update_level(current_level)
 
     def shutdown(self):
         """
