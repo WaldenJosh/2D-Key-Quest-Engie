@@ -19,4 +19,8 @@ class DataManager:
         return self.data.get("enemies", [])
 
     def get_level_data(self, level_id):
-        return self.data.get("levels", {}).get(level_id, {})
+        """Find and return the level data based on the level ID."""
+        for level in self.data.get("levels", []):
+            if level["id"] == level_id:
+                return level
+        return {}  # Return empty if level not found

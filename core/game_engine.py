@@ -21,10 +21,11 @@ from rendering import Renderer
 from debug import DebugManager, LogLevel
 from data import data_manager
 from core import state_manager
+from core import input_handler
 
 
 status_dict = {
-    "test": "testing", "frame": 0
+    "frame": 0
 }
 
 
@@ -46,8 +47,9 @@ class GameEngine:
         self.frame_rate = 60  # Frames per second
         self.frame_duration = 1.0 / self.frame_rate  # Duration of each frame in seconds
         self.debugger = DebugManager()
-        self.data_manager = data_manager.DataManager() # Initialize the data manager
-        self.state_manager = state_manager.StateManager() # Initialize the state manager
+        self.data_manager = data_manager.DataManager()  # Initialize the data manager
+        self.state_manager = state_manager.StateManager()  # Initialize the state manager
+        self.input_handler = input_handler.InputHandler()  # Initialize the input handler
 
     def start_up(self):
         """
@@ -56,6 +58,8 @@ class GameEngine:
         """
         self.renderer.clear_screen()
         self.data_manager.load_data()
+        self.state_manager.update_level(
+            self.data_manager.get_level_data(1)) # Load the first level
 
     def update(self):
         """
@@ -118,8 +122,6 @@ class GameEngine:
         # Call the rendering system to draw the current game state
         # Render the level geometry from the state manager self.state_manager.return_level()
 
-        
-        
         self.renderer.draw_border()
         self.renderer.update_screen()
 
@@ -128,9 +130,9 @@ class GameEngine:
         """
         Handles user input to control the game.
 
-        Retrieves input from the renderer and stops the game if the 'q' key is pressed.
+        Retrieves input from the input handler and stops the game if the 'q' key is pressed.
         """
-        key = self.renderer.get_input()
+        key = self.input_handler.get_input()
         if key == ord('q'):
             self.is_running = False
 

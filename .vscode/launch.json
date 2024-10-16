@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "debugpy",
+            "request": "launch",
+            "name": "Launch 2D Key Quest Engine",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}

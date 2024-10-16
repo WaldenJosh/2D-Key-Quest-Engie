@@ -6,6 +6,7 @@ class StateManager:
         self.state = {
             "current_level": {
                 "id": None,
+                "current_position": [],
                 "geometry": [],
             },
             "player": {

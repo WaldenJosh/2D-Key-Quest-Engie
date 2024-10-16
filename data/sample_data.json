@@ -68,6 +68,7 @@
             "id": 1,
             "layout": "basic",
             "description": "This is a small village area with some goblins around.",
+            "current_position": [1, 1],
             "geometry": [
                 ["#", "#", "#", "#", "#", "#", "#"],
                 ["#", ".", ".", ".", ".", ".", "#"],
